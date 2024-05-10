@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="0">
+
+
+
+
+        <record id="booking_acceptance_email" model="mail.template">
+            <field name="name">Confirmation Template</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="model_id" ref="model_meeting_room_booking"/>
+            <field name="lang">${object.lang}</field>
+            <field name="email_from">${object.user_id.company_id.email}</field>
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject"><![CDATA[Regarding Status of ${object.meeting_room_id.name} room]]></field>
+            <field name="body_html">
+                <![CDATA[
+					<div>
+					    <p>Hello ${object.user_id.name},</p>
+					    %if object.state in ['accepted']:
+					        <p>This mail is to inform you that your room "${object.meeting_room_id.name}" has been accepted for
+					        discussion of ${object.name}.</p>
+					        <p>Booking Details:-<br/>
+					        Meeting Room: ${object.meeting_room_id.name}<br/>
+					        Meeting Start Date: ${object.meeting_date}<br/>
+					        Meeting End Date: ${object.meeting_end_time}</p>
+					    %endif
+					    <p>Regards, </p>
+					    <p>NYDA</p>
+					</div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="booking_rejection_email" model="mail.template">
+            <field name="name">Booking Rejection Email Template</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="model_id" ref="model_meeting_room_booking"/>
+            <field name="lang">${object.lang}</field>
+            <field name="email_from">${object.user_id.company_id.email}</field>
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject"><![CDATA[Regarding Status of ${object.meeting_room_id.name} room]]></field>
+            <field name="body_html">
+                <![CDATA[
+					<div>
+					    <p>Hello ${object.user_id.name},</p>
+					    %if object.state in ['rejected']:
+					        <p>This mail is to inform you that your room "${object.meeting_room_id.name}" has been rejected for
+					        discussion of ${object.name}.</p>
+					        <p>Booking Details:-<br/>
+					        Meeting Room: ${object.meeting_room_id.name}<br/>
+					        Meeting Start Date: ${object.meeting_date}<br/>
+					        Meeting End Date: ${object.meeting_end_time}</p>
+					    %endif
+					    <p>Regards, </p>
+					    <p>NYDA</p>
+					</div>
+            ]]>
+            </field>
+        </record>
+
+        <record id="fleet_bm_approval_email" model="mail.template">
+            <field name="name">Branch Manager Approval Template</field>
+            <field name="auto_delete" eval="False"/>
+            <field name="model_id" ref="model_fleet_booking"/>
+            <field name="lang">${object.lang}</field>
+            <field name="email_from">${object.user_id.company_id.email}</field>
+            <field name="email_to">${object.user_id.login}</field>
+            <field name="subject"><![CDATA[Regarding Status of ${object.vehicle_id.name} Vehicle]]></field>
+            <field name="body_html">
+                <![CDATA[
+					<div>
+					    <p>Hello ${object.user_id.name},</p>
+					    %if object.state in ['branch_manager_approved']:
+					        <p>This mail is to inform you that your vehicle booking for "${object.vehicle_id.name}" has been approved by 
+                            the Branch Manager.</p>
+
+					        <p>Booking Details:-<br/>
+					        Vehicle           : ${object.vehicle_id.name}<br/>
+					        Meeting Start Date: ${object.meeting_date}<br/>
+					        Meeting End Date  : ${object.meeting_end_time}</p>
+					    %endif
+					    <p>Regards, </p>
+					    <p>NYDA</p>
+					</div>
+            ]]>
+            </field>
+        </record>
+
+    
+    </data>
+</odoo>

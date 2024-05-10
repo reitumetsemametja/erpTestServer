@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="fleet_booking_rejection_form" model="ir.ui.view">
+            <field name="name">Fleet Booking Rejection Form</field>
+            <field name="model">fleet.booking</field>
+            <field name="inherit_id" ref="facility.fleet_booking_form_view"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//button[@name='action_reject']" position="after">
+                    <button string="BM Reject" name="branch_manager_reject"  type="object" groups="base.group_system, client_management.group_branch_manager" attrs="{'invisible': [('state', '!=', 'booked')]}" class="oe_highlight" />
+                    
+                </xpath>
+                <xpath expr="//button[@name='action_reject']" position="after">
+                    <button string=" HO Reject" name="head_office_reject"  type="object" attrs="{'invisible': [('state', '!=', 'booked')]}" groups="base.group_system,facility.facility_officer" class="oe_highlight" />
+                    
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</odoo>

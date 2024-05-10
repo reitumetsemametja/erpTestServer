@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<data>
+
+ <record model="ir.ui.view" id="fleet_booking_rejection_wizard_form_view">
+        <field name="name">Vehicle Rejection Reason</field>
+        <field name="model">fleet.rejection.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="bm_rejection_reason" required="1" />
+                </group>
+                
+                <footer>
+                    <button name="submit_reason" string="Send Email" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+ <record model="ir.ui.view" id="ho_fleet_booking_rejection_wizard_form_view">
+        <field name="name">Vehicle Rejection Reason</field>
+        <field name="model">fleet.rejection.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="ho_rejection_reason" required="1" />
+                </group>
+                
+                <footer>
+                    <button name="ho_submit_reason" string="Send Email" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+ 
+<record model="ir.actions.act_window" id="action_ho_fleet_rejection_reason">
+        <field name="name">HO Vehicle Rejection Wizard</field>
+        <field name="res_model">fleet.rejection.reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_id" ref="ho_fleet_booking_rejection_wizard_form_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+ <record model="ir.actions.act_window" id="action_fleet_rejection_reason">
+        <field name="name">Vehicle Rejection Wizard</field>
+        <field name="res_model">fleet.rejection.reason</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="view_id" ref="fleet_booking_rejection_wizard_form_view"/>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    </data>
+</odoo>

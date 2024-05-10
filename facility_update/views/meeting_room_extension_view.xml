@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="meeting_room_extension_form" model="ir.ui.view">
+            <field name="name">Receipt Batch Form</field>
+            <field name="model">meeting.room.booking</field>
+            <field name="inherit_id" ref="facility.meeting_room_booking_form_view"/>
+            <field name="arch" type="xml">
+            
+                <xpath expr="//button[@name='cancel_room']" position="after">
+                    <button string="Accept Booking" name="accept_booking"  type="object" groups="base.group_system,facility.facility_manager" class="oe_highlight" />
+                    
+                </xpath>
+                <xpath expr="//button[@name='cancel_room']" position="after">
+                    <button string="Reject Booking" name="reject_booking"  type="object" groups="base.group_system,facility.facility_manager" class="oe_highlight" />
+                    
+                </xpath>
+                
+            </field>
+        </record>
+        
+    </data>
+</odoo>
